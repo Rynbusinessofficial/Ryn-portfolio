@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ryn - Discord Developer</title>
 
 <style>
-/* ===== GLOBAL ===== */
-body {
+/* ===== RESET ===== */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: white;
-  cursor: none;
-  overflow-x: hidden;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
 }
 
-/* ===== CUSTOM CURSOR ===== */
+body {
+  background: radial-gradient(circle at top, #0f1220, #07080f);
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===== CURSOR ===== */
 .cursor {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 6px;
+  height: 6px;
   background: #5865F2;
+  border-radius: 50%;
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px #5865F2;
   z-index: 9999;
-  box-shadow: 0 0 20px #5865F2;
 }
 
 .cursor-ring {
-  width: 35px;
-  height: 35px;
-  border: 2px solid rgba(88,101,242,0.5);
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(88,101,242,0.35);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -40,97 +48,96 @@ body {
   z-index: 9998;
 }
 
-/* ===== HEADER ===== */
-header {
-  text-align: center;
-  padding: 100px 20px;
-  background: radial-gradient(circle at top, #5865F2, #0f0f0f 60%);
-  animation: fadeIn 1s ease;
-}
-
-h1 {
-  font-size: 50px;
-  margin: 0;
-  text-shadow: 0 0 20px rgba(88,101,242,0.6);
-}
-
-p {
-  color: #ccc;
-}
-
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-/* ===== CARDS ===== */
+/* ===== CARD ===== */
 .card {
-  background: rgba(26,26,26,0.8);
-  border: 1px solid #2a2a2a;
-  padding: 20px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  transition: 0.3s ease;
-  transform: translateY(30px);
-  opacity: 0;
-  animation: slideUp 0.8s forwards;
+  width: 360px;
+  padding: 28px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
 }
 
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(88,101,242,0.2);
+/* ===== AVATAR ===== */
+.avatar {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 2px solid #5865F2;
+  margin-bottom: 10px;
 }
 
-/* ===== TAGS ===== */
-.tag {
-  display: inline-block;
-  background: #2b2d31;
-  padding: 5px 10px;
-  border-radius: 8px;
-  margin: 5px;
-  font-size: 12px;
+/* ===== NAME ===== */
+h1 {
+  font-size: 22px;
+  margin-bottom: 4px;
 }
+
+.role {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+/* ===== STATUS ===== */
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dnd { background: #ed4245; }
+.online { background: #3ba55d; }
+.idle { background: #faa61a; }
+.offline { background: gray; }
 
 /* ===== BUTTON ===== */
 .btn {
   display: inline-block;
-  background: #5865F2;
-  padding: 12px 20px;
+  padding: 10px 16px;
   border-radius: 10px;
-  text-decoration: none;
+  background: #5865F2;
   color: white;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s ease;
   margin-top: 10px;
-  transition: 0.3s;
-  box-shadow: 0 0 15px rgba(88,101,242,0.3);
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(88,101,242,0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(88,101,242,0.25);
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== MUSIC ===== */
+.music {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #888;
+  cursor: pointer;
+}
+
+/* ===== ANIMATION ===== */
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
+  from {opacity: 0; transform: translateY(10px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-@keyframes slideUp {
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* ===== SCROLL REVEAL ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.6s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .cursor, .cursor-ring { display: none; }
 }
 </style>
 </head>
@@ -140,52 +147,45 @@ p {
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
 
-<header>
+<div class="card">
+
+  <img id="avatar" class="avatar" src="" />
+
   <h1>Ryn</h1>
-  <p>Discord Bot Developer | APIs | Automation | Backend</p>
-</header>
+  <div class="role">Discord Bot Developer</div>
 
-<div class="container">
-
-  <div class="card reveal">
-    <h2>About Me</h2>
-    <p>Discord bot developer with strong experience in APIs, automation and backend systems. I build powerful bots for communities.</p>
+  <div class="status">
+    <div id="dot" class="dot"></div>
+    <span id="statusText">Loading status...</span>
   </div>
 
-  <div class="card reveal">
-    <h2>Skills</h2>
-    <span class="tag">Discord Bots</span>
-    <span class="tag">Python</span>
-    <span class="tag">JavaScript</span>
-    <span class="tag">APIs</span>
-    <span class="tag">Automation</span>
-    <span class="tag">Backend</span>
-  </div>
+  <p style="font-size:13px; color:#aaa;">
+    APIs • Automation • Backend Systems
+  </p>
 
-  <div class="card reveal">
-    <h2>Experience</h2>
-    <p>
-      ✔ Multiple Discord bots built<br>
-      ✔ Moderation & economy systems<br>
-      ✔ API integrations<br>
-      ✔ Optimization & maintenance
-    </p>
-  </div>
+  <a class="btn"
+     href="https://discord.com/users/1270370476396384362"
+     target="_blank">
+    Contact Me
+  </a>
 
-  <div class="card reveal">
-    <h2>Contact</h2>
-    <p>Discord: <b>ryn42e</b></p>
-    <a class="btn" href="https://discord.com">Contact Me</a>
-  </div>
+  <div class="music" onclick="toggleMusic()">Toggle Music</div>
 
 </div>
 
+<!-- MUSIC (optional clean) -->
+<audio id="audio" loop>
+  <source src="https://files.catbox.moe/9n3f1m.mp3" type="audio/mp3">
+</audio>
+
 <script>
-/* ===== CUSTOM CURSOR ===== */
+const USER_ID = "1270370476396384362";
+
+/* ===== CURSOR ===== */
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 
@@ -193,19 +193,44 @@ document.addEventListener("mousemove", (e) => {
   ring.style.top = e.clientY + "px";
 });
 
-/* ===== SCROLL REVEAL ===== */
-const reveals = document.querySelectorAll(".reveal");
+/* ===== DISCORD API ===== */
+fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`)
+.then(res => res.json())
+.then(data => {
 
-window.addEventListener("scroll", () => {
-  for (let i = 0; i < reveals.length; i++) {
-    let windowHeight = window.innerHeight;
-    let elementTop = reveals[i].getBoundingClientRect().top;
+  const d = data.data;
 
-    if (elementTop < windowHeight - 100) {
-      reveals[i].classList.add("active");
-    }
+  document.getElementById("avatar").src =
+    `https://cdn.discordapp.com/avatars/${USER_ID}/${d.discord_user.avatar}.png?size=256`;
+
+  const status = d.discord_status;
+  const dot = document.getElementById("dot");
+  const text = document.getElementById("statusText");
+
+  if (status === "dnd") {
+    dot.className = "dot dnd";
+    text.innerText = "Do Not Disturb";
+  }
+  else if (status === "online") {
+    dot.className = "dot online";
+    text.innerText = "Online";
+  }
+  else if (status === "idle") {
+    dot.className = "dot idle";
+    text.innerText = "Idle";
+  }
+  else {
+    dot.className = "dot offline";
+    text.innerText = "Offline";
   }
 });
+
+/* ===== MUSIC ===== */
+const audio = document.getElementById("audio");
+function toggleMusic() {
+  if (audio.paused) audio.play();
+  else audio.pause();
+}
 </script>
 
 </body>
