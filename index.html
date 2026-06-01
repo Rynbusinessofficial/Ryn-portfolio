@@ -1,386 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ryn - Discord Developer</title>
-
-<style>
-/* ===== GLOBAL ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Inter, Arial, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background:
-    radial-gradient(circle at top, rgba(88,101,242,0.12), transparent 40%),
-    radial-gradient(circle at bottom, rgba(88,101,242,0.08), transparent 40%),
-    #070a12;
-  color: #e5e7eb;
-  overflow-x: hidden;
-}
-
-/* ===== CURSOR (SMOOTH + PREMIUM) ===== */
-.cursor {
-  width: 8px;
-  height: 8px;
-  background: #5865F2;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  box-shadow: 0 0 18px rgba(88,101,242,0.6);
-}
-
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(88,101,242,0.25);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9998;
-  transition: transform 0.08s linear;
-}
-
-/* ===== NAV ===== */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 14px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(7,10,18,0.6);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  z-index: 1000;
-}
-
-.logo {
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-nav a {
-  color: #9ca3af;
-  text-decoration: none;
-  margin-left: 14px;
-  font-size: 13px;
-  transition: 0.2s;
-}
-
-nav a:hover {
-  color: white;
-}
-
-/* ===== HERO ===== */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.hero h1 {
-  font-size: 58px;
-  font-weight: 900;
-  letter-spacing: -1px;
-}
-
-.hero p {
-  margin-top: 14px;
-  max-width: 680px;
-  color: #9ca3af;
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.cta {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 16px;
-  background: #5865F2;
-  border-radius: 10px;
-  text-decoration: none;
-  color: white;
-  font-size: 13px;
-  transition: 0.2s;
-}
-
-.cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(88,101,242,0.25);
-}
-
-/* ===== SECTIONS ===== */
-section {
-  padding: 80px 20px;
-  max-width: 1050px;
-  margin: auto;
-}
-
-h2 {
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: white;
-  margin-bottom: 14px;
-}
-
-/* ===== GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px;
-}
-
-/* ===== CARDS ===== */
-.card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 18px;
-  border-radius: 14px;
-  transition: 0.3s ease;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(88,101,242,0.35);
-}
-
-.card h3 {
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.card p {
-  font-size: 13px;
-  color: #9ca3af;
-  line-height: 1.6;
-}
-
-/* ===== SKILLS ===== */
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.skill {
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  color: #d1d5db;
-}
-
-/* ===== AUDIO BTN ===== */
-.audio {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 12px;
-  background: rgba(88,101,242,0.15);
-  border: 1px solid rgba(88,101,242,0.4);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-/* ===== ANIM ===== */
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 36px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RYN | Discord Bot Developer</title>
+  <meta name="description" content="RYN is a Discord bot developer building API systems, automation tools, and scalable Discord infrastructure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
-
 <body>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
+  <div class="site-background" aria-hidden="true"></div>
 
-<nav>
-  <div class="logo">RYN</div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="RYN home">
+      <span class="brand-mark">R</span>
+      <span>RYN</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="music-toggle" type="button" aria-label="Toggle background music" aria-pressed="true">
+      <span class="music-pulse"></span>
+      <span class="music-text">Music ON</span>
+    </button>
+  </header>
 
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <h1>Discord Bot Developer</h1>
-    <p>
-      I specialize in building high-performance Discord bots, automation systems,
-      API integrations, and scalable backend architectures designed for real communities.
-    </p>
-    <a class="cta" href="#contact">Get in Touch</a>
-  </div>
-</div>
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-content">
+        <p class="eyebrow reveal">Discord Bot Engineering</p>
+        <h1 class="reveal">RYN</h1>
+        <p class="hero-subtitle reveal">Discord Bot Developer</p>
+        <p class="hero-copy reveal">
+          Building API systems, Discord bots, and automation tools for communities that need reliable infrastructure and polished user flows.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="button primary" href="https://discord.com/users/1270370476396384362" target="_blank" rel="noreferrer">Contact Me</a>
+          <a class="button secondary" href="#projects">View Work</a>
+        </div>
+      </div>
+      <div class="hero-panel reveal">
+        <div class="panel-top">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="terminal-line"><span>ryn.api</span> deploy --secure</div>
+        <div class="terminal-metric">
+          <strong>99.9%</strong>
+          <span>transaction integrity target</span>
+        </div>
+        <div class="signal-grid">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>ABOUT</h2>
-  <p class="card show">
-    Self-taught developer focused on Discord bot engineering and backend systems.
-    I build structured, scalable and efficient automation tools used for moderation,
-    economy systems, ticket handling, and API-driven services.
-    My focus is on performance, clean architecture, and reliability.
-  </p>
-</section>
+    <section class="section about" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">About</p>
+        <h2>Self-taught engineering with production discipline.</h2>
+      </div>
+      <div class="about-grid">
+        <p class="lead reveal">
+          RYN is a self-taught developer focused on Discord bot engineering, backend systems, and automation that solves real operational problems for online communities.
+        </p>
+        <div class="about-copy reveal">
+          <p>
+            His work combines Discord.js, API integrations, secure data handling, and practical backend design to create bots that feel dependable for users and manageable for staff.
+          </p>
+          <p>
+            From casino economy logic to ticket workflows and moderation pipelines, RYN builds systems with scalability, maintainability, and clean execution in mind.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <h2>EXPERIENCE</h2>
+    <section class="section experience" id="experience">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Purpose-built Discord systems with backend depth.</h2>
+      </div>
+      <div class="experience-grid">
+        <article class="experience-card reveal">
+          <div class="card-index">01</div>
+          <h3>Discord Casino Bot Systems</h3>
+          <p>
+            Designed structured economy systems with gambling mechanics, cooldown controls, API integrations, and secure transaction flows.
+          </p>
+          <ul>
+            <li>Balance tracking, rewards, wagers, and controlled payout logic.</li>
+            <li>Cooldown systems that protect game pacing and reduce abuse.</li>
+            <li>Transaction-first architecture for predictable state changes.</li>
+          </ul>
+        </article>
 
-  <div class="grid">
+        <article class="experience-card reveal">
+          <div class="card-index">02</div>
+          <h3>Moderation Systems</h3>
+          <p>
+            Built moderation tools that help staff prevent spam, review incidents, and enforce permissions without slowing down active communities.
+          </p>
+          <ul>
+            <li>Anti-spam detection, automated actions, and escalation logic.</li>
+            <li>Logging systems for moderation visibility and audit trails.</li>
+            <li>Role permission checks that keep commands secure and scoped.</li>
+          </ul>
+        </article>
 
-    <div class="card show">
-      <h3>Discord Casino Systems</h3>
-      <p>
-        Developed multiple fully functional casino-style bot systems with API integration,
-        economy logic, reward systems, cooldown handling and secure transaction flows.
-      </p>
-    </div>
+        <article class="experience-card reveal">
+          <div class="card-index">03</div>
+          <h3>Ticket Systems</h3>
+          <p>
+            Developed support workflows with dynamic ticket channels, transcripts, staff tools, and automated routing for cleaner service operations.
+          </p>
+          <ul>
+            <li>Private channel creation with configurable staff access.</li>
+            <li>Transcript generation for support history and accountability.</li>
+            <li>Automation workflows for claim, close, archive, and follow-up.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-    <div class="card show">
-      <h3>Moderation Infrastructure</h3>
-      <p>
-        Built scalable moderation systems including auto-moderation, logging tools,
-        anti-spam protection and configurable role-based permissions.
-      </p>
-    </div>
+    <section class="section skills" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Skills</p>
+        <h2>Core tools for bot infrastructure and automation.</h2>
+      </div>
+      <div class="skill-cloud">
+        <span class="reveal">Node.js</span>
+        <span class="reveal">Discord.js</span>
+        <span class="reveal">JavaScript</span>
+        <span class="reveal">Python</span>
+        <span class="reveal">REST APIs</span>
+        <span class="reveal">MongoDB</span>
+        <span class="reveal">Backend systems</span>
+        <span class="reveal">Automation</span>
+      </div>
+    </section>
 
-    <div class="card show">
-      <h3>Ticket & Support Systems</h3>
-      <p>
-        Designed structured support systems with dynamic ticket channels, transcripts,
-        staff dashboards and automated workflow handling for communities.
-      </p>
-    </div>
+    <section class="section projects" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Projects</p>
+        <h2>Systems designed for communities that operate at scale.</h2>
+      </div>
+      <div class="project-grid">
+        <article class="project-card reveal">
+          <p class="project-type">Framework</p>
+          <h3>Casino Bot Framework</h3>
+          <p>A modular casino foundation with wallet logic, cooldowns, configurable game mechanics, and API-ready economy extensions.</p>
+        </article>
+        <article class="project-card reveal">
+          <p class="project-type">Moderation</p>
+          <h3>Moderation Bot System</h3>
+          <p>A staff-focused moderation system with anti-spam automation, event logging, role permissions, and clean command handling.</p>
+        </article>
+        <article class="project-card reveal">
+          <p class="project-type">Support</p>
+          <h3>Ticket Support System</h3>
+          <p>A full support workflow for dynamic ticket channels, transcripts, staff actions, and automated lifecycle management.</p>
+        </article>
+      </div>
+    </section>
 
-  </div>
-</section>
+    <section class="section contact" id="contact">
+      <div class="contact-shell reveal">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Need a serious Discord system built with care?</h2>
+          <p>
+            Reach out to discuss custom bots, API integrations, moderation tooling, ticket systems, or automation workflows for your community.
+          </p>
+        </div>
+        <a class="button primary contact-button" href="https://discord.com/users/1270370476396384362" target="_blank" rel="noreferrer">Contact Me</a>
+      </div>
+    </section>
+  </main>
 
-<!-- SKILLS -->
-<section id="skills">
-  <h2>SKILLS</h2>
-
-  <div class="skills">
-    <div class="skill">Node.js</div>
-    <div class="skill">Discord.js</div>
-    <div class="skill">JavaScript</div>
-    <div class="skill">Python</div>
-    <div class="skill">REST APIs</div>
-    <div class="skill">MongoDB</div>
-    <div class="skill">System Design</div>
-    <div class="skill">Automation</div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <h2>PROJECTS</h2>
-
-  <div class="grid">
-    <div class="card show">
-      <h3>Casino Bot Framework</h3>
-      <p>Full gambling and economy system with API-driven logic and secure backend handling.</p>
-    </div>
-
-    <div class="card show">
-      <h3>Moderation Bot System</h3>
-      <p>Advanced moderation suite with logs, filters, auto-actions and server protection tools.</p>
-    </div>
-
-    <div class="card show">
-      <h3>Support Ticket System</h3>
-      <p>Automated ticketing platform with transcripts, roles and structured support workflow.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>CONTACT</h2>
-  <p style="color:#9ca3af; font-size:13px;">
-    Let’s build scalable systems and Discord infrastructure together.
-  </p>
-</section>
-
-<button class="audio" onclick="toggleAudio()">Music</button>
-
-<audio id="audio" loop autoplay>
-  <source src="https://files.catbox.moe/9n3f1m.mp3" type="audio/mp3">
-</audio>
-
-<script>
-/* ===== CURSOR ===== */
-const cursor = document.querySelector(".cursor");
-const ring = document.querySelector(".cursor-ring");
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-
-  ring.style.left = e.clientX + "px";
-  ring.style.top = e.clientY + "px";
-});
-
-/* ===== SCROLL ANIM ===== */
-const cards = document.querySelectorAll(".card");
-
-function reveal() {
-  const trigger = window.innerHeight * 0.85;
-
-  cards.forEach(card => {
-    if (card.getBoundingClientRect().top < trigger) {
-      card.classList.add("show");
-    }
-  });
-}
-
-window.addEventListener("scroll", reveal);
-reveal();
-
-/* ===== AUDIO ===== */
-const audio = document.getElementById("audio");
-
-function toggleAudio() {
-  if (audio.paused) audio.play();
-  else audio.pause();
-}
-</script>
-
+  <script src="./app.js"></script>
 </body>
 </html>
