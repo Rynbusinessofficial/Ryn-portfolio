@@ -6,7 +6,7 @@
 <title>Ryn - Developer Portfolio</title>
 
 <style>
-/* ===== RESET ===== */
+/* ===== GLOBAL ===== */
 * {
   margin: 0;
   padding: 0;
@@ -19,11 +19,11 @@ html {
 }
 
 body {
-  background: #0a0d14;
+  background: #070a12;
   color: #e5e7eb;
 }
 
-/* ===== TOP BAR ===== */
+/* ===== NAV ===== */
 nav {
   position: fixed;
   top: 0;
@@ -32,22 +32,23 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(10,13,20,0.7);
+  background: rgba(7,10,18,0.75);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   z-index: 1000;
 }
 
 .logo {
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 14px;
   color: white;
 }
 
 nav a {
   color: #9ca3af;
   text-decoration: none;
-  margin-left: 16px;
+  margin-left: 14px;
   font-size: 13px;
   transition: 0.2s;
 }
@@ -56,27 +57,29 @@ nav a:hover {
   color: white;
 }
 
-/* ===== HERO (compact + pro) ===== */
+/* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 80px 20px 40px;
+  padding: 80px 20px;
 }
 
 .hero h1 {
-  font-size: 44px;
+  font-size: 54px;
+  font-weight: 800;
   letter-spacing: -1px;
   animation: fadeUp 0.8s ease;
 }
 
 .hero p {
-  margin-top: 10px;
-  max-width: 600px;
+  margin-top: 12px;
+  max-width: 650px;
   color: #9ca3af;
   font-size: 14px;
+  line-height: 1.6;
   animation: fadeUp 1s ease;
 }
 
@@ -85,12 +88,11 @@ nav a:hover {
   display: inline-block;
   padding: 10px 16px;
   background: #5865F2;
-  color: white;
   border-radius: 10px;
+  color: white;
   text-decoration: none;
   font-size: 13px;
   transition: 0.2s;
-  animation: fadeUp 1.2s ease;
 }
 
 .cta:hover {
@@ -98,61 +100,21 @@ nav a:hover {
   box-shadow: 0 10px 25px rgba(88,101,242,0.25);
 }
 
-/* ===== SECTIONS COMPACT ===== */
+/* ===== SECTIONS ===== */
 section {
-  padding: 70px 20px;
+  padding: 80px 20px;
   max-width: 1000px;
   margin: auto;
 }
 
 h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
+  font-size: 18px;
+  margin-bottom: 14px;
   color: white;
+  letter-spacing: 1px;
 }
 
-/* ===== ABOUT CARD ===== */
-.about {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 18px;
-  border-radius: 14px;
-  font-size: 14px;
-  color: #9ca3af;
-  line-height: 1.6;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: 0.6s ease;
-}
-
-.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* ===== SKILLS ===== */
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.skill {
-  font-size: 12px;
-  padding: 6px 10px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  color: #d1d5db;
-  transition: 0.2s;
-}
-
-.skill:hover {
-  transform: translateY(-2px);
-  border-color: rgba(88,101,242,0.4);
-}
-
-/* ===== PROJECTS ===== */
+/* ===== CARDS ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -166,12 +128,17 @@ h2 {
   border-radius: 14px;
   transition: 0.25s ease;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(18px);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(88,101,242,0.3);
+  transform: translateY(-3px);
+  border-color: rgba(88,101,242,0.35);
 }
 
 .card h3 {
@@ -182,6 +149,23 @@ h2 {
 .card p {
   font-size: 13px;
   color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* ===== SKILLS ===== */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill {
+  font-size: 12px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  color: #d1d5db;
 }
 
 /* ===== CONTACT ===== */
@@ -190,15 +174,14 @@ h2 {
 }
 
 .contact a {
-  margin-top: 10px;
   display: inline-block;
+  margin-top: 10px;
   padding: 10px 16px;
   background: #5865F2;
   border-radius: 10px;
   text-decoration: none;
   color: white;
   font-size: 13px;
-  transition: 0.2s;
 }
 
 /* ===== FOOTER ===== */
@@ -209,15 +192,15 @@ footer {
   color: #6b7280;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== ANIMATION ===== */
 @keyframes fadeUp {
   from {opacity: 0; transform: translateY(10px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 600px) {
-  .hero h1 { font-size: 30px; }
+  .hero h1 { font-size: 34px; }
 }
 </style>
 </head>
@@ -226,9 +209,10 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div class="logo">RYN.DEV</div>
+  <div class="logo">RYN</div>
   <div>
     <a href="#about">About</a>
+    <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
@@ -240,67 +224,111 @@ footer {
   <div>
     <h1>Discord Bot Developer</h1>
     <p>
-      I build scalable Discord bots, API systems, and automation tools with a focus on performance and clean architecture.
+      I build scalable Discord bots, casino systems, moderation tools,
+      ticket systems and API-driven automation platforms.
     </p>
-    <a class="cta" href="#contact">Get in Touch</a>
+    <a class="cta" href="#contact">Contact Me</a>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <h2>About</h2>
-  <div class="about reveal">
-    Self-taught developer specialized in Discord bots and backend systems.
-    I design automation tools, API integrations, and scalable bot architectures
-    used in real communities.
+  <h2>ABOUT</h2>
+  <p style="color:#9ca3af; font-size:13px; line-height:1.6;">
+    Self-taught developer focused on Discord bot systems and backend architecture.
+    I design and build automation tools, API integrations, and high-performance bots
+    used in community environments.
+  </p>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2>EXPERIENCE</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Casino Bot Systems</h3>
+      <p>
+        Developed multiple fully functional Discord casino bots with APIs, economy systems,
+        gambling mechanics, cooldown systems and secure transaction handling.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Moderation Bots</h3>
+      <p>
+        Built advanced moderation bots including anti-spam, auto-moderation,
+        logging systems, and role-based permission management.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Ticket Systems</h3>
+      <p>
+        Designed fully automated ticket systems with dynamic channels,
+        transcripts, staff tools and structured support workflows.
+      </p>
+    </div>
+
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <h2>Skills</h2>
+  <h2>SKILLS</h2>
+
   <div class="skills">
     <div class="skill">Node.js</div>
-    <div class="skill">JavaScript</div>
     <div class="skill">Discord.js</div>
+    <div class="skill">JavaScript</div>
     <div class="skill">Python</div>
     <div class="skill">REST APIs</div>
     <div class="skill">MongoDB</div>
-    <div class="skill">Automation</div>
     <div class="skill">Backend Systems</div>
+    <div class="skill">Automation</div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <h2>Projects</h2>
+  <h2>PROJECTS</h2>
 
   <div class="grid">
+
     <div class="card">
-      <h3>Moderation Bot</h3>
-      <p>Auto-moderation, logs system, role management and anti-spam protection.</p>
+      <h3>Casino Bot Framework</h3>
+      <p>
+        Full gambling system with balance management, games, API logic and secure economy handling.
+      </p>
     </div>
 
     <div class="card">
-      <h3>Economy System</h3>
-      <p>Full Discord economy with shop, inventory and leaderboard system.</p>
+      <h3>Moderation System</h3>
+      <p>
+        Scalable moderation system for Discord servers with logs, auto-actions and configurable rules.
+      </p>
     </div>
 
     <div class="card">
-      <h3>API Automation Bot</h3>
-      <p>External API integrations with automated workflows and data handling.</p>
+      <h3>Support Ticket Bot</h3>
+      <p>
+        Ticket system with transcripts, staff panel, and automated support workflows.
+      </p>
     </div>
+
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
-  <h2>Contact</h2>
+  <h2>CONTACT</h2>
   <p style="color:#9ca3af; font-size:13px;">
-    Let’s work together on Discord bots or backend systems.
+    Let’s build something scalable and efficient together.
   </p>
+
   <a href="https://discord.com/users/1270370476396384362" target="_blank">
-    Contact Me
+    Contact on Discord
   </a>
 </section>
 
@@ -310,16 +338,15 @@ footer {
 
 <script>
 /* ===== SCROLL ANIMATION ===== */
-const elements = document.querySelectorAll(".card, .about");
+const cards = document.querySelectorAll(".card");
 
 function reveal() {
   const trigger = window.innerHeight * 0.85;
 
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-
+  cards.forEach(card => {
+    const top = card.getBoundingClientRect().top;
     if (top < trigger) {
-      el.classList.add("show");
+      card.classList.add("show");
     }
   });
 }
