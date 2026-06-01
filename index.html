@@ -1,128 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ryn - Discord Bot Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryn - Discord Developer</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-    }
+<style>
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
+  cursor: none;
+  overflow-x: hidden;
+}
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #5865F2, #0f0f0f);
-    }
+/* ===== CUSTOM CURSOR ===== */
+.cursor {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #5865F2;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  box-shadow: 0 0 20px #5865F2;
+}
 
-    header h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+.cursor-ring {
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgba(88,101,242,0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+}
 
-    header p {
-      color: #ccc;
-      font-size: 18px;
-    }
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 100px 20px;
+  background: radial-gradient(circle at top, #5865F2, #0f0f0f 60%);
+  animation: fadeIn 1s ease;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+h1 {
+  font-size: 50px;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(88,101,242,0.6);
+}
 
-    .card {
-      background: #1a1a1a;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #2a2a2a;
-    }
+p {
+  color: #ccc;
+}
 
-    h2 {
-      color: #5865F2;
-      margin-bottom: 10px;
-    }
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
 
-    .tag {
-      display: inline-block;
-      background: #2b2d31;
-      padding: 5px 10px;
-      border-radius: 8px;
-      margin: 5px 5px 0 0;
-      font-size: 13px;
-    }
+/* ===== CARDS ===== */
+.card {
+  background: rgba(26,26,26,0.8);
+  border: 1px solid #2a2a2a;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: slideUp 0.8s forwards;
+}
 
-    .contact {
-      text-align: center;
-      padding: 40px;
-    }
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(88,101,242,0.2);
+}
 
-    .btn {
-      display: inline-block;
-      background: #5865F2;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 10px;
-    }
+/* ===== TAGS ===== */
+.tag {
+  display: inline-block;
+  background: #2b2d31;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 5px;
+  font-size: 12px;
+}
 
-    .btn:hover {
-      background: #4752c4;
-    }
-  </style>
+/* ===== BUTTON ===== */
+.btn {
+  display: inline-block;
+  background: #5865F2;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  margin-top: 10px;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(88,101,242,0.3);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(88,101,242,0.6);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes slideUp {
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
 <header>
   <h1>Ryn</h1>
-  <p>Discord Bot Developer | APIs | Automation | Backend Engineering</p>
+  <p>Discord Bot Developer | APIs | Automation | Backend</p>
 </header>
 
 <div class="container">
 
-  <div class="card">
+  <div class="card reveal">
     <h2>About Me</h2>
-    <p>
-      I am a Discord bot developer with strong experience in coding and backend systems.
-      I have built multiple bots for different servers and I specialize in APIs, automation, and system design.
-    </p>
+    <p>Discord bot developer with strong experience in APIs, automation and backend systems. I build powerful bots for communities.</p>
   </div>
 
-  <div class="card">
+  <div class="card reveal">
     <h2>Skills</h2>
     <span class="tag">Discord Bots</span>
     <span class="tag">Python</span>
     <span class="tag">JavaScript</span>
     <span class="tag">APIs</span>
     <span class="tag">Automation</span>
-    <span class="tag">Backend Development</span>
-    <span class="tag">Database Systems</span>
+    <span class="tag">Backend</span>
   </div>
 
-  <div class="card">
+  <div class="card reveal">
     <h2>Experience</h2>
     <p>
-      ✔ Built multiple Discord bots for communities<br>
-      ✔ Moderation, economy, and ticket systems<br>
-      ✔ API integration and data handling<br>
-      ✔ Performance optimization and maintenance
+      ✔ Multiple Discord bots built<br>
+      ✔ Moderation & economy systems<br>
+      ✔ API integrations<br>
+      ✔ Optimization & maintenance
     </p>
   </div>
 
+  <div class="card reveal">
+    <h2>Contact</h2>
+    <p>Discord: <b>ryn42e</b></p>
+    <a class="btn" href="https://discord.com">Contact Me</a>
+  </div>
+
 </div>
 
-<div class="contact">
-  <h2>Contact</h2>
-  <p>Discord: <b>ryn42e</b></p>
-  <a class="btn" href="https://discord.com">Contact Me</a>
-</div>
+<script>
+/* ===== CUSTOM CURSOR ===== */
+const cursor = document.querySelector(".cursor");
+const ring = document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  ring.style.left = e.clientX + "px";
+  ring.style.top = e.clientY + "px";
+});
+
+/* ===== SCROLL REVEAL ===== */
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+  for (let i = 0; i < reveals.length; i++) {
+    let windowHeight = window.innerHeight;
+    let elementTop = reveals[i].getBoundingClientRect().top;
+
+    if (elementTop < windowHeight - 100) {
+      reveals[i].classList.add("active");
+    }
+  }
+});
+</script>
 
 </body>
 </html>
